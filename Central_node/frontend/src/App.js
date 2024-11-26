@@ -1,52 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import RecipeList from "./pages/RecipeList";
+import RecipeForm from "./pages/RecipeForm";
+import CostSimulation from "./pages/CostSimulation";
 
 function App() {
-  const [products, setProducts] = useState([]);
-
-  // Fetch products from API
-  useEffect(() => {
-    fetch('/api/products')
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error('Error fetching products:', error));
-  }, []);
-
   return (
-    <div className="App">
-      <header>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-          <div className="container">
-            <a className="navbar-brand" href="/">Central Node</a>
-          </div>
-        </nav>
-      </header>
-
-      <main className="container mt-5">
-        <h1 className="text-center mb-4">Product List</h1>
-        <div className="row">
-          {products.map((product, index) => (
-            <div className="col-md-4 mb-4" key={index}>
-              <div className="card h-100 shadow-sm">
-                <div className="card-body">
-                  <h5 className="card-title">{product.name}</h5>
-                  <p className="card-text">
-                    Price: <strong>${product.price}</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-
-      <footer className="bg-light py-3 mt-auto">
-        <div className="container text-center">
-          <p className="m-0">© 2024 Central Node. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
+    <Router>
+      <Container>
+        <h1 className="mt-5">Perfume Project Management</h1>
+        <Routes>
+          <Route path="/" element={<RecipeList />} />
+          <Route path="/add-recipe" element={<RecipeForm />} />
+          <Route path="/cost-simulation" element={<CostSimulation />} />
+        </Routes>
+      </Container>
+    </Router>
   );
 }
 
