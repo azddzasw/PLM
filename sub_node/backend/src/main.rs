@@ -1,7 +1,7 @@
 use actix_web::{App, HttpServer};
 use dotenv::dotenv;
 use std::env;
-use log::{info, error};
+use log::info;
 
 mod db;
 mod routes;
@@ -23,7 +23,7 @@ async fn main() -> std::io::Result<()> {
     // 启动 Actix-Web 服务器
     HttpServer::new(move || {
         App::new()
-            .app_data(db_pool.clone())
+            .app_data(actix_web::web::Data::new(db_pool.clone()))
             .configure(routes::configure) // 加载路由
     })
     .bind(("0.0.0.0", port.parse::<u16>().unwrap()))?
