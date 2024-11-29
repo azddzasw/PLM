@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage";
-import InspirationPage from "./pages/InspirationPage";
-import RecipePage from "./pages/RecipePage";
-import CompliancePage from "./pages/CompliancePage";
+import HomePage from "./pages/HomePage.jsx";
+import InspirationPage from "./pages/InspirationPage.jsx";
+import RecipePage from "./pages/RecipePage.jsx";
+import CompliancePage from "./pages/CompliancePage.jsx";
+import './styles/App.css';
 
 function App() {
   return (
